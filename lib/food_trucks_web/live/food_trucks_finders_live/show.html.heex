@@ -1,0 +1,41 @@
+<h1>Show Food trucks finders</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.food_trucks_finders_show_path(@socket, :show, @food_trucks_finders)}>
+    <.live_component
+      module={FoodTrucksWeb.FoodTrucksFindersLive.FormComponent}
+      id={@food_trucks_finders.id}
+      title={@page_title}
+      action={@live_action}
+      food_trucks_finders={@food_trucks_finders}
+      return_to={Routes.food_trucks_finders_show_path(@socket, :show, @food_trucks_finders)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Truck name:</strong>
+    <%= @food_trucks_finders.truck_name %>
+  </li>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @food_trucks_finders.address %>
+  </li>
+
+  <li>
+    <strong>Latitude:</strong>
+    <%= @food_trucks_finders.latitude %>
+  </li>
+
+  <li>
+    <strong>Longitude:</strong>
+    <%= @food_trucks_finders.longitude %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.food_trucks_finders_show_path(@socket, :edit, @food_trucks_finders), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.food_trucks_finders_index_path(@socket, :index) %></span>
